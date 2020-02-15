@@ -1,0 +1,16 @@
+Here is our trouble shooting procedure =)
+
+Errors when attempting to connect to MongoDB can be caused by a number of things. Please go through this checklist carefully, even double checking things on it you are sure you already looked at as often it is a tiny detail that has caused the code to break.
+The value of your MONGO_URI, often called the "connection string", is what you get from MongoDB when you: log into MongoDB, then use the "connect" menu. Making sure you select "python" as the driver and "3.6 or later" for version.
+
+The connection string looks something like this:
+
+mongodb+srv://username:password@clustername-qtxun.mongodb.net/databasename?retryWrites=true&w=majority 
+Make sure the username and password you use in the connection string are the ones for your database, not the ones you use to log into the MongoDB website. 
+To see your database username, and reset your database password if you have forgotten it, log into MongoDB and click on "Database Access" in the left side menu.
+Don't put <> around your password, MongoDB puts <password>  in the connection string they provide you with, but you do not want the <> it in there for your functioning one.
+Make sure you have whitelisted all IP address for your database. To set this, log into MongoDB, click on "Network Access" in the left side menu, click "add ip address" and enter the address 0.0.0.0/0
+Make sure you are using the correct database name in your connection string. MongoDB sometimes puts test in the connection string they provide you with where your database name needs to go. Also remember that your database name is case sensitive, so log into MongoDB to check you have the exact right format in your connection string.
+Make sure in your run.py or app.py file that you are calling the right collection name (also case sensitive) when you make a request to the database.
+If using an environment variable (recommended) to store your MONGO_URI, make sure that this has been set up correctly and the value is being passed to the .py file you are trying to use it for. A simple print() statement in your .py file can check this. More on setting environment variables here.
+If the connection issue is with your deployed site on heroku only, make sure you have set your heroku environment variables. More on how to do that here.
